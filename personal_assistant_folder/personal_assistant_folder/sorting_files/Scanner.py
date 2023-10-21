@@ -58,8 +58,6 @@ class Scanner:
 
             file_path = folder / item.name
 
-            print(f"Extension: {extension}")
-
             if not extension:
                 self.other_files.append(file_path)
             else:
