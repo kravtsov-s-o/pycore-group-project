@@ -27,6 +27,6 @@ class NormalizeName:
         :return: new name on latin
         """
         new_name = name.translate(self._build_transliteration_map())
-        new_name = re.sub(r'\W', "_", new_name)
+        new_name = re.sub(r'[^\w.]+', "_", new_name)
 
         return new_name

@@ -1,4 +1,4 @@
-from personal_assistant_folder.Field import Field
+from personal_assistant_folder.helpers.Field import Field
 
 
 class Tag(Field):

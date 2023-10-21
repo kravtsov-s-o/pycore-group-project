@@ -1,8 +1,8 @@
-from personal_assistant_folder.Address import Address
-from personal_assistant_folder.Email import Email
-from personal_assistant_folder.Name import Name
-from personal_assistant_folder.Phone import Phone
-from personal_assistant_folder.Birthday import Birthday
+from personal_assistant_folder.address_book.fields.Address import Address
+from personal_assistant_folder.address_book.fields.Email import Email
+from personal_assistant_folder.address_book.fields.Name import Name
+from personal_assistant_folder.address_book.fields.Phone import Phone
+from personal_assistant_folder.address_book.fields.Birthday import Birthday
 
 
 class Record:

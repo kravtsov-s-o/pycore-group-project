@@ -1,6 +1,6 @@
 import os
 from personal_assistant_folder.sorting_files.Sorting import Sorting
-from personal_assistant_folder.Pagination import Paginator
+from personal_assistant_folder.helpers.Pagination import Paginator
 
 EMPTY_MESSAGE = 'List is empty ...'
 
