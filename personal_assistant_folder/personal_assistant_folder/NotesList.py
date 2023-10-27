@@ -5,10 +5,10 @@ from personal_assistant_folder.helpers.Serialization import Serialization
 class NotesList:
     def __init__(self, filename):
         self.filename = filename
-        self.noteslist = Serialization.load_from_file(self.filename)
+        self.notes_list = Serialization.load_from_file(self.filename)
 
     def _unique_title(self, value):
-        for note in self.noteslist:
+        for note in self.notes_list:
             if str(note.title) == value:
                 raise ValueError('This Title already exist!')
 
@@ -28,9 +28,9 @@ class NotesList:
                 for tag in tags_list:
                     note.add_tag(tag)
 
-            self.noteslist.append(note)
+            self.notes_list.append(note)
 
-            Serialization.save_to_file(self.noteslist, self.filename)
+            Serialization.save_to_file(self.notes_list, self.filename)
 
             return True
 
@@ -62,7 +62,7 @@ class NotesList:
             else:
                 raise ValueError("Invalid field name for editing")
 
-            Serialization.save_to_file(self.noteslist, self.filename)
+            Serialization.save_to_file(self.notes_list, self.filename)
 
             return True
 
@@ -70,7 +70,7 @@ class NotesList:
             raise ValueError("Invalid data for editing\nExample: title;content;#tag1,#tag2,#tag3, or single one")
 
     def find_note(self, value):
-        for note in self.noteslist:
+        for note in self.notes_list:
             if str(note.title) == value:
                 return note
 
@@ -80,16 +80,16 @@ class NotesList:
         # !!!Attention!!!
         # Find and delete Note work only by it title
         result = False
-        for note in self.noteslist:
+        for note in self.notes_list:
             if value == note.title._value:
-                self.noteslist.remove(note)
-                Serialization.save_to_file(self.noteslist, self.filename)
+                self.notes_list.remove(note)
+                Serialization.save_to_file(self.notes_list, self.filename)
                 result = True
         return result
 
     def find_notes(self, value):
         found_notes = []
-        for note in self.noteslist:
+        for note in self.notes_list:
             if value in note.title.value or value in note.content.value:
                 found_notes.append(note)
 
@@ -102,7 +102,7 @@ class NotesList:
         result_list = []
         title_to_note = {}
 
-        for note in self.noteslist:
+        for note in self.notes_list:
             for tag in note.tags:
                 if value == tag.value:
                     title = note.title.value
