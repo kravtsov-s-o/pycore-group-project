@@ -6,7 +6,6 @@ Jarlis.egg-info/dependency_links.txt
 Jarlis.egg-info/entry_points.txt
 Jarlis.egg-info/top_level.txt
 personal_assistant_folder/AddressBook.py
-personal_assistant_folder/Menu.py
 personal_assistant_folder/NotesList.py
 personal_assistant_folder/__init__.py
 personal_assistant_folder/personal_assistant.py

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='Jarlis',
-      version='0.0.1',
+      version='0.0.2',
       packages=find_packages(),
       author='pycore17 group 6',
       description='Manage your Address book, Notes list, sort your files',
