@@ -21,9 +21,9 @@ class Paginator:
         return page_data
 
     def move(self, direction):
-        if direction == 'n' and self.current_page < self.total_pages:
+        if direction == "n" and self.current_page < self.total_pages:
             self.current_page += 1
-        elif direction == 'p' and self.current_page > 1:
+        elif direction == "p" and self.current_page > 1:
             self.current_page -= 1
-        elif direction == 'q':
+        elif direction == "q":
             raise StopIteration

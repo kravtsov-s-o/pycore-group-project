@@ -8,6 +8,11 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.poetry.dev-dependencies]
+black = "^22.5.0"
+isort = "^5.9.3"
+pylint = "^2.12.2"
+
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,5 +1,6 @@
-from helpers.Field import Field
 import re
+
+from helpers.Field import Field
 
 
 class Email(Field):
@@ -16,7 +17,7 @@ class Email(Field):
             )
 
             if len(value) > self.MAX_LENGTH:
-                raise ValueError('Email is too long.')
+                raise ValueError("Email is too long.")
 
             if not email_re.match(value):
-                raise ValueError('Invalid email format.')
+                raise ValueError("Invalid email format.")

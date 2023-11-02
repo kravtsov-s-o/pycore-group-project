@@ -2,10 +2,41 @@ import re
 
 
 class NormalizeName:
-    UKRAINIAN_SYMBOLS = 'абвгдеєжзиіїйклмнопрстуфхцчшщьюя'
-    TRANSLATION = ("a", "b", "v", "g", "d", "e", "je", "zh", "z", "y", "i", "ji", "j",
-                   "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts",
-                   "ch", "sh", "sch", "", "ju", "ja")
+    UKRAINIAN_SYMBOLS = "абвгдеєжзиіїйклмнопрстуфхцчшщьюя"
+    TRANSLATION = (
+        "a",
+        "b",
+        "v",
+        "g",
+        "d",
+        "e",
+        "je",
+        "zh",
+        "z",
+        "y",
+        "i",
+        "ji",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "r",
+        "s",
+        "t",
+        "u",
+        "f",
+        "h",
+        "ts",
+        "ch",
+        "sh",
+        "sch",
+        "",
+        "ju",
+        "ja",
+    )
 
     def _build_transliteration_map(self):
         """
@@ -27,6 +58,6 @@ class NormalizeName:
         :return: new name on latin
         """
         new_name = name.translate(self._build_transliteration_map())
-        new_name = re.sub(r'\W', "_", new_name)
+        new_name = re.sub(r"\W", "_", new_name)
 
         return new_name

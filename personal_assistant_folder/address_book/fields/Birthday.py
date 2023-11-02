@@ -1,5 +1,6 @@
-from helpers.Field import Field
 import datetime
+
+from helpers.Field import Field
 
 
 class Birthday(Field):
@@ -9,13 +10,17 @@ class Birthday(Field):
 
     def validate(self, value):
         try:
-            datetime.datetime.strptime(value, '%d.%m.%Y')
+            datetime.datetime.strptime(value, "%d.%m.%Y")
         except ValueError:
             raise ValueError("correct format is 03.10.1990")
 
     def days_to_birthday(self):
         current_date = datetime.date.today()
-        next_birthday = datetime.datetime.strptime(self._value, '%d.%m.%Y').date().replace(year=current_date.year)
+        next_birthday = (
+            datetime.datetime.strptime(self._value, "%d.%m.%Y")
+            .date()
+            .replace(year=current_date.year)
+        )
 
         if next_birthday < current_date:
             next_birthday = next_birthday.replace(year=current_date.year + 1)

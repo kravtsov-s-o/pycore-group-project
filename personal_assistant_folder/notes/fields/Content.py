@@ -12,4 +12,6 @@ class Content(Field):
         text = value.strip()
 
         if text and len(text) > self.MAX_LENGTH:
-            raise ValueError(f"The content length must be less {self.MAX_LENGTH} characters")
+            raise ValueError(
+                f"The content length must be less {self.MAX_LENGTH} characters"
+            )

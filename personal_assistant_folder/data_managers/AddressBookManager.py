@@ -1,37 +1,39 @@
-from data_managers.DataManager import DataManager
-from ui.UIManager import UIManager
 from AddressBook import AddressBook
+from data_managers.DataManager import DataManager
 from decorators.HandleDecorator import HandleDecorator
 from helpers.Pagination import Paginator
+from ui.UIManager import UIManager
 
 
 class AddressBookManager(DataManager):
     MENU_ADDRESS_BOOK = {
-        'title': "AddressBook Menu",
-        'items': [
+        "title": "AddressBook Menu",
+        "items": [
             "1. Find",
             "2. Add",
             "3. Edit",
             "4. Delete",
             "5. Show All",
             "6. Find contacts with birthdays",
-            "7. Exit"
-        ]
+            "7. Exit",
+        ],
     }
     MENU_EDIT_CONTACT = {
-        'title': "Edit Contact Menu",
-        'items': [
+        "title": "Edit Contact Menu",
+        "items": [
             "1. Edit all",
             "2. Name",
             "3. Phone",
             "4. Email",
             "5. Address",
             "6. Birthday",
-            "7. Exit"
-        ]
+            "7. Exit",
+        ],
     }
 
-    def __init__(self, addressbook: AddressBook, ui_manager: UIManager, items_per_page: int = 10):
+    def __init__(
+        self, addressbook: AddressBook, ui_manager: UIManager, items_per_page: int = 10
+    ):
         self.addressbook = addressbook
         self.ui_manager = ui_manager
         self.items_per_page = items_per_page
@@ -51,7 +53,7 @@ class AddressBookManager(DataManager):
             notes_paginator = Paginator(contacts, self.items_per_page)
             self.ui_manager.show_items(notes_paginator)
         else:
-            self.ui_manager.show_message('List is empty ...')
+            self.ui_manager.show_message("List is empty ...")
 
     @HandleDecorator.handle_exception
     def find_item(self):
@@ -59,7 +61,9 @@ class AddressBookManager(DataManager):
         Find item for edit
         """
         self.ui_manager.clear_console()
-        choose_record = self.ui_manager.get_user_input('Search contact for editing (Name)')
+        choose_record = self.ui_manager.get_user_input(
+            "Search contact for editing (Name)"
+        )
         current_record = self.addressbook.find_record(choose_record)
         if not current_record:
             self.ui_manager.show_message(f"Contact '{choose_record}' isn't found")
@@ -78,11 +82,11 @@ class AddressBookManager(DataManager):
         Add new contact
         """
         self.ui_manager.clear_console()
-        self.ui_manager.show_message('Example: name;phone;birthday;email;address')
+        self.ui_manager.show_message("Example: name;phone;birthday;email;address")
         command = self.ui_manager.get_user_input()
         result = self.addressbook.add_record(command)
         if result:
-            self.ui_manager.show_message('Contact successfully saved')
+            self.ui_manager.show_message("Contact successfully saved")
         self.ui_manager.wait_to_continue()
 
     @HandleDecorator.handle_exception
@@ -97,40 +101,40 @@ class AddressBookManager(DataManager):
 
         self.ui_manager.show_menu(self.MENU_EDIT_CONTACT)
 
-        choice = self.ui_manager.get_user_input('Choose item')
+        choice = self.ui_manager.get_user_input("Choose item")
 
         self.ui_manager.clear_console()
         if choice == "1":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit whole Contact')
-            self.ui_manager.show_message('Example: name;phone;birthday;email;address')
+            self.ui_manager.show_message("Edit whole Contact")
+            self.ui_manager.show_message("Example: name;phone;birthday;email;address")
             command = self.ui_manager.get_user_input()
             result = self.addressbook.edit_record(current_record, command)
         elif choice == "2":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit Name')
+            self.ui_manager.show_message("Edit Name")
             command = self.ui_manager.get_user_input("Enter Name")
-            result = self.addressbook.edit_record(current_record, command, 'name')
+            result = self.addressbook.edit_record(current_record, command, "name")
         elif choice == "3":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit Phone')
+            self.ui_manager.show_message("Edit Phone")
             command = self.ui_manager.get_user_input("Enter phone")
-            result = self.addressbook.edit_record(current_record, command, 'phone')
+            result = self.addressbook.edit_record(current_record, command, "phone")
         elif choice == "4":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit Email')
+            self.ui_manager.show_message("Edit Email")
             command = self.ui_manager.get_user_input("Enter email")
-            result = self.addressbook.edit_record(current_record, command, 'email')
+            result = self.addressbook.edit_record(current_record, command, "email")
         elif choice == "5":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit Address')
+            self.ui_manager.show_message("Edit Address")
             command = self.ui_manager.get_user_input("Enter address")
-            result = self.addressbook.edit_record(current_record, command, 'address')
+            result = self.addressbook.edit_record(current_record, command, "address")
         elif choice == "6":
             self.ui_manager.clear_console()
-            self.ui_manager.show_message('Edit Birthday')
+            self.ui_manager.show_message("Edit Birthday")
             command = self.ui_manager.get_user_input("Enter birthday date (dd.mm.yyyy)")
-            result = self.addressbook.edit_record(current_record, command, 'birthday')
+            result = self.addressbook.edit_record(current_record, command, "birthday")
         elif choice == "7":
             return False  # Возвращаем False, чтобы указать, что нужно выйти из цикла
         else:
@@ -138,7 +142,7 @@ class AddressBookManager(DataManager):
             return True  # Возвращаем True, чтобы указать, что нужно продолжить цикл
 
         if result:
-            self.ui_manager.show_message('Record updated successfully')
+            self.ui_manager.show_message("Record updated successfully")
             self.ui_manager.wait_to_continue()
 
         return True
@@ -153,7 +157,7 @@ class AddressBookManager(DataManager):
         command = self.ui_manager.get_user_input("Delete (contact name)")
         result = self.addressbook.delete_record(command)
         if result:
-            self.ui_manager.show_message('Contact successfully deleted')
+            self.ui_manager.show_message("Contact successfully deleted")
         else:
             self.ui_manager.show_message("Contact isn't found")
 

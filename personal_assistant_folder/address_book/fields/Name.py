@@ -11,4 +11,6 @@ class Name(Field):
     def validate(self, value):
         check_name = value.strip()
         if len(check_name) < self.MIN_LENGTH or check_name.isdigit():
-            raise ValueError("Invalid name. Name should be 3+ chars length and don`t consist only with numbers")
+            raise ValueError(
+                "Invalid name. Name should be 3+ chars length and don`t consist only with numbers"
+            )

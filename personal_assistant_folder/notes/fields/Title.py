@@ -16,4 +16,6 @@ class Title(Field):
             raise ValueError(f"Title can't be empty")
 
         if not (self.MIN_LENGTH <= len(title) <= self.MAX_LENGTH):
-            raise ValueError(f"The title length must be from {self.MIN_LENGTH} to {self.MAX_LENGTH} characters")
+            raise ValueError(
+                f"The title length must be from {self.MIN_LENGTH} to {self.MAX_LENGTH} characters"
+            )

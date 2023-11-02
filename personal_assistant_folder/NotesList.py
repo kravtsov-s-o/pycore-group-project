@@ -10,7 +10,7 @@ class NotesList:
     def _unique_title(self, value):
         for note in self.notes_list:
             if str(note.title) == value:
-                raise ValueError('This Title already exist!')
+                raise ValueError("This Title already exist!")
 
     def add(self, value):
         # !!!Attention!!!
@@ -19,12 +19,12 @@ class NotesList:
         # Example: Title;Content;#tag1,#tag2,#tag3
 
         try:
-            title, content, tags = value.split(';')
+            title, content, tags = value.split(";")
             self._unique_title(title)  # Перевірка на унікальність title
             note = Note(title, content)
 
             if tags:
-                tags_list = tags.split(',')
+                tags_list = tags.split(",")
                 for tag in tags_list:
                     note.add_tag(tag)
 
@@ -35,28 +35,30 @@ class NotesList:
             return True
 
         except ValueError:
-            raise ValueError("Invalid data format\nExample: Title;Content;#tag1,#tag2,#tag3")
+            raise ValueError(
+                "Invalid data format\nExample: Title;Content;#tag1,#tag2,#tag3"
+            )
 
     def edit_note(self, note, data, field=None):
         try:
             if field is None:  # редагування всих полів
-                title, content, tags = data.split(';')
+                title, content, tags = data.split(";")
                 note.edit_title(title)
                 note.edit_content(content)
 
                 note.tags.clear()
                 if tags:
-                    tags_list = tags.split(',')
+                    tags_list = tags.split(",")
                     for tag in tags_list:
                         note.add_tag(tag)
             # редагування відповідних полів
-            elif field == 'title':
+            elif field == "title":
                 note.edit_title(data)
-            elif field == 'content':
+            elif field == "content":
                 note.edit_title(data)
-            elif field == 'tags':
+            elif field == "tags":
                 note.tags.clear()
-                tags_list = data.split(',')
+                tags_list = data.split(",")
                 for tag in tags_list:
                     note.add_tag(tag)
             else:
@@ -67,7 +69,9 @@ class NotesList:
             return True
 
         except ValueError:
-            raise ValueError("Invalid data for editing\nExample: title;content;#tag1,#tag2,#tag3, or single one")
+            raise ValueError(
+                "Invalid data for editing\nExample: title;content;#tag1,#tag2,#tag3, or single one"
+            )
 
     def find_note(self, value):
         for note in self.notes_list:
@@ -94,7 +98,7 @@ class NotesList:
                 found_notes.append(note)
 
         if not found_notes:
-            found_notes.append('Nothing found!')
+            found_notes.append("Nothing found!")
 
         return found_notes
 

@@ -1,15 +1,15 @@
 from pathlib import Path
+
 from sorting_files.NormalizeName import NormalizeName
 
 
 class Scanner:
-
     def __init__(self):
-        self.IMAGES = ('JPEG', 'PNG', 'JPG', 'SVG')
-        self.VIDEOS = ('AVI', 'MP4', 'MOV', 'MKV')
-        self.DOCUMENTS = ('DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX')
-        self.AUDIOS = ('MP3', 'OGG', 'WAV', 'AMR')
-        self.ARCHIVES = ('ZIP', 'GZ', 'TAR')
+        self.IMAGES = ("JPEG", "PNG", "JPG", "SVG")
+        self.VIDEOS = ("AVI", "MP4", "MOV", "MKV")
+        self.DOCUMENTS = ("DOC", "DOCX", "TXT", "PDF", "XLSX", "PPTX")
+        self.AUDIOS = ("MP3", "OGG", "WAV", "AMR")
+        self.ARCHIVES = ("ZIP", "GZ", "TAR")
 
         self.images_files = list()
         self.videos_files = list()
@@ -24,11 +24,11 @@ class Scanner:
         self.unknown_extensions = set()
 
         self.registered_extensions = {
-            'IMAGES': self.images_files,
-            'VIDEOS': self.videos_files,
-            'DOCUMENTS': self.docs_files,
-            'AUDIOS': self.audios_files,
-            'ARCHIVES': self.archives_files
+            "IMAGES": self.images_files,
+            "VIDEOS": self.videos_files,
+            "DOCUMENTS": self.docs_files,
+            "AUDIOS": self.audios_files,
+            "ARCHIVES": self.archives_files,
         }
         self.normalize_name = NormalizeName()
 
@@ -49,7 +49,13 @@ class Scanner:
         """
         for item in folder.iterdir():
             if item.is_dir():
-                if item.name not in ('IMAGES', 'VIDEOS', 'DOCUMENTS', 'AUDIOS', 'ARCHIVES'):
+                if item.name not in (
+                    "IMAGES",
+                    "VIDEOS",
+                    "DOCUMENTS",
+                    "AUDIOS",
+                    "ARCHIVES",
+                ):
                     self.folders.append(item)
                     self.scan(item)
                 continue
@@ -63,19 +69,19 @@ class Scanner:
             else:
                 try:
                     if extension in self.IMAGES:
-                        container = self.registered_extensions['IMAGES']
+                        container = self.registered_extensions["IMAGES"]
                         extensions_list = self.extensions
                     elif extension in self.VIDEOS:
-                        container = self.registered_extensions['VIDEOS']
+                        container = self.registered_extensions["VIDEOS"]
                         extensions_list = self.extensions
                     elif extension in self.DOCUMENTS:
-                        container = self.registered_extensions['DOCUMENTS']
+                        container = self.registered_extensions["DOCUMENTS"]
                         extensions_list = self.extensions
                     elif extension in self.AUDIOS:
-                        container = self.registered_extensions['AUDIOS']
+                        container = self.registered_extensions["AUDIOS"]
                         extensions_list = self.extensions
                     elif extension in self.ARCHIVES:
-                        container = self.registered_extensions['ARCHIVES']
+                        container = self.registered_extensions["ARCHIVES"]
                         extensions_list = self.extensions
                     else:
                         container = self.other_files

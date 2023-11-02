@@ -1,10 +1,10 @@
-from notes.fields.Title import Title
 from notes.fields.Content import Content
 from notes.fields.Tag import Tag
+from notes.fields.Title import Title
 
 
 class Note:
-    def __init__(self, title, content=''):
+    def __init__(self, title, content=""):
         self.title = Title(title)
         self.content = Content(content)
         self.tags = set()
@@ -46,7 +46,9 @@ class Note:
             self.tags.discard(Tag(value))
 
     def __str__(self):
-        tags_str = ', '.join(str(tag) for tag in self.tags) if self.tags else ''
-        return (f"{'Title:'.ljust(8)} {self.title}\n"
-                f"{'Content:'.ljust(8)} {self.content}\n"
-                f"{'Tags:'.ljust(8)} {tags_str}")
+        tags_str = ", ".join(str(tag) for tag in self.tags) if self.tags else ""
+        return (
+            f"{'Title:'.ljust(8)} {self.title}\n"
+            f"{'Content:'.ljust(8)} {self.content}\n"
+            f"{'Tags:'.ljust(8)} {tags_str}"
+        )

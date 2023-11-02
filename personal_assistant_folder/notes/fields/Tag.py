@@ -16,9 +16,11 @@ class Tag(Field):
             raise ValueError(f"Tag can't be empty")
 
         if not (self.MIN_LENGTH <= len(tag) <= self.MAX_LENGTH):
-            raise ValueError(f"The tag length must be from {self.MIN_LENGTH} to {self.MAX_LENGTH} characters")
+            raise ValueError(
+                f"The tag length must be from {self.MIN_LENGTH} to {self.MAX_LENGTH} characters"
+            )
 
-        if not tag.startswith('#'):
+        if not tag.startswith("#"):
             raise ValueError("Tag must starts with '#'")
 
     def __hash__(self):

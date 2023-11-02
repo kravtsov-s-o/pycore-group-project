@@ -1,8 +1,9 @@
 import shutil
 import sys
-from sorting_files.Scanner import Scanner
-from sorting_files.NormalizeName import NormalizeName
 from pathlib import Path
+
+from sorting_files.NormalizeName import NormalizeName
+from sorting_files.Scanner import Scanner
 
 
 class Sorting:
@@ -44,7 +45,7 @@ class Sorting:
         target_folder = root_folder / new_folder
         target_folder.mkdir(exist_ok=True)
 
-        new_name = self.normalize_name.new_name(path.name[:path.name.rfind('.')])
+        new_name = self.normalize_name.new_name(path.name[: path.name.rfind(".")])
 
         archive_folder = target_folder / new_name
         archive_folder.mkdir(exist_ok=True)
@@ -93,26 +94,26 @@ class Sorting:
         self.scanner.scan(self.folder_path)
 
         for file in self.scanner.images_files:
-            self.handle_file(file, self.folder_path, 'IMAGES')
+            self.handle_file(file, self.folder_path, "IMAGES")
 
         for file in self.scanner.videos_files:
-            self.handle_file(file, self.folder_path, 'VIDEOS')
+            self.handle_file(file, self.folder_path, "VIDEOS")
 
         for file in self.scanner.docs_files:
-            self.handle_file(file, self.folder_path, 'DOCUMENTS')
+            self.handle_file(file, self.folder_path, "DOCUMENTS")
 
         for file in self.scanner.audios_files:
-            self.handle_file(file, self.folder_path, 'AUDIOS')
+            self.handle_file(file, self.folder_path, "AUDIOS")
 
         for file in self.scanner.other_files:
-            self.handle_file(file, self.folder_path, 'OTHERS')
+            self.handle_file(file, self.folder_path, "OTHERS")
 
         for file in self.scanner.archives_files:
-            self.handle_archive(file, self.folder_path, 'ARCHIVES')
+            self.handle_archive(file, self.folder_path, "ARCHIVES")
 
         self.get_folder_objects(self.folder_path)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sorting = Sorting(sys.argv[1])
     sorting.sort()
