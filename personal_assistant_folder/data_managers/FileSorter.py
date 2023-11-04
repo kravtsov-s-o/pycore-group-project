@@ -31,8 +31,8 @@ class FileSorter:
                     sorting = Sorting(user_string)
                     sorting.sort()
                 except ValueError as e:
-                    self.ui_manager.show_menu(e)
+                    self.ui_manager.show_message(e)
 
-                self.ui_manager.show_menu("Finish")
+                self.ui_manager.show_message("Finish")
                 self.ui_manager.wait_to_continue()
                 break
