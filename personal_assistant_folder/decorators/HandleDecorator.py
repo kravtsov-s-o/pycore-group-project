@@ -1,4 +1,7 @@
 from functools import wraps
+from helpers.Logger import MyLogger
+
+logger = MyLogger()
 
 
 class HandleDecorator:
@@ -13,6 +16,6 @@ class HandleDecorator:
             try:
                 func(*args, **kwargs)
             except ValueError as e:
-                print(e)
+                logger.error(str(e))
 
         return wrapper

@@ -25,7 +25,7 @@ class ConsoleUIManager(UIManager):
         Press 'Enter' to continue...
         """
         self.show_message()
-        print("Press enter to continue...")
+        input("Press enter to continue...")
 
     def get_divider(self, length: int = 10, symbol: str = "-") -> str:
         """
